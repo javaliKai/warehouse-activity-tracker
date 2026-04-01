@@ -18,7 +18,7 @@ Hyperparam for Ground and Tracking
 """
 MODEL_ID = "IDEA-Research/grounding-dino-tiny"
 VIDEO_PATH = "/content/drive/MyDrive/warehouse_videos/safe_trolley.mp4"
-TEXT_PROMPT = "person. forklift. goods."
+TEXT_PROMPT = "person. trolley. cart."
 OUTPUT_VIDEO_PATH = "./safe_trolley_tracking_demo.mp4"
 SOURCE_VIDEO_FRAME_DIR = "./custom_video_frames"
 SAVE_TRACKING_RESULTS_DIR = "./tracking_results"
@@ -58,7 +58,8 @@ Custom video input directly using video files
 video_info = sv.VideoInfo.from_video_path(VIDEO_PATH)  # get video info
 print(video_info)
 # frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=1, start=0, end=None)
-frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=3, start=0, end=None)  # using more stride to extract fewer slices
+# using more stride to extract fewer slices, and starting at slice 25 to get clearer picture of the object
+frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=3, start=25, end=None)  
 
 # saving video to frames
 source_frames = Path(SOURCE_VIDEO_FRAME_DIR)
