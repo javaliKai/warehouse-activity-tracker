@@ -20,9 +20,10 @@ GROUNDING_DINO_CONFIG = "grounding_dino/groundingdino/config/GroundingDINO_SwinT
 GROUNDING_DINO_CHECKPOINT = "gdino_checkpoints/groundingdino_swint_ogc.pth"
 BOX_THRESHOLD = 0.35
 TEXT_THRESHOLD = 0.25
-VIDEO_PATH = "./assets/hippopotamus.mp4"
-TEXT_PROMPT = "hippopotamus."
-OUTPUT_VIDEO_PATH = "./hippopotamus_tracking_demo.mp4"
+# taking from mounted google drive based on colab root
+VIDEO_PATH = "/content/drive/MyDrive/warehouse_videos/safe_trolley.mp4"
+TEXT_PROMPT = "person. forklift. goods."
+OUTPUT_VIDEO_PATH = "./safe_trolley_tracking_demo.mp4"
 SOURCE_VIDEO_FRAME_DIR = "./custom_video_frames"
 SAVE_TRACKING_RESULTS_DIR = "./tracking_results"
 PROMPT_TYPE_FOR_VIDEO = "box" # choose from ["point", "box", "mask"]
@@ -38,10 +39,11 @@ grounding_model = load_model(
     device=DEVICE
 )
 
-
 # init sam image predictor and video predictor model
-sam2_checkpoint = "./checkpoints/sam2.1_hiera_large.pt"
-model_cfg = "configs/sam2.1/sam2.1_hiera_l.yaml"
+# sam2_checkpoint = "./checkpoints/sam2.1_hiera_large.pt"
+# model_cfg = "configs/sam2.1/sam2.1_hiera_l.yaml"
+sam2_checkpoint = "./checkpoints/sam2.1_hiera_base_plus.pt"
+model_cfg = "configs/sam2.1/sam2.1_hiera_b+.yaml"
 
 video_predictor = build_sam2_video_predictor(model_cfg, sam2_checkpoint)
 sam2_image_model = build_sam2(model_cfg, sam2_checkpoint)

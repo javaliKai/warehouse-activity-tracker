@@ -18,6 +18,7 @@ from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection
 Hyper parameters
 """
 parser = argparse.ArgumentParser()
+# below is the argument to tell HF transformers to load the grounding dino model, you can change to any other model that is compatible with AutoModelForZeroShotObjectDetection
 parser.add_argument('--grounding-model', default="IDEA-Research/grounding-dino-tiny")
 parser.add_argument("--text-prompt", default="car. tire.")
 parser.add_argument("--img-path", default="notebooks/images/truck.jpg")
