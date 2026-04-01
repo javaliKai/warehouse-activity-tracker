@@ -57,7 +57,8 @@ Custom video input directly using video files
 """
 video_info = sv.VideoInfo.from_video_path(VIDEO_PATH)  # get video info
 print(video_info)
-frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=1, start=0, end=None)
+# frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=1, start=0, end=None)
+frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=3, start=0, end=None)  # using more stride to extract fewer slices
 
 # saving video to frames
 source_frames = Path(SOURCE_VIDEO_FRAME_DIR)
@@ -68,7 +69,10 @@ with sv.ImageSink(
     overwrite=True, 
     image_name_pattern="{:05d}.jpg"
 ) as sink:
-    for frame in tqdm(frame_generator, desc="Saving Video Frames"):
+    # for frame in tqdm(frame_generator, desc="Saving Video Frames"):
+    #     sink.save_image(frame)
+    for frame in tqdm(frame_generator, desc="Saving Video Frames with Higher Stride and Lower Res"):
+        frame = cv2.resize(frame, (640, 360))  # to 640x360
         sink.save_image(frame)
 
 # scan all the JPEG frame names in this directory
