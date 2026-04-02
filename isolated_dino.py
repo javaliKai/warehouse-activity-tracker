@@ -22,7 +22,7 @@ Custom args for make debugging fast
 parser = argparse.ArgumentParser()
 parser.add_argument("--video-path", default="/content/drive/MyDrive/warehouse_videos/safe_trolley.mp4")
 parser.add_argument("--text-prompt", default="person.")
-parser.add_argument("--frame-start", default=0)
+parser.add_argument("--frame-start", type=int, default=0)
 parser.add_argument("--output-dir", default="./isolated_dino_output")
 args = parser.parse_args()
 
