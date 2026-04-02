@@ -117,7 +117,7 @@ Step 3: Visualize the detection result along with the original image
 original_img = cv2.imread(img_path)
 
 # construct ids: [0, 1, ... N] as long as the number of detected classes
-class_ids = np.arange(list(class_names))
+class_ids = np.arange(len(class_names))
 
 # build labels alongside that, we map the class name with the confidence score for better visualization
 # example item: "car 0.80"
