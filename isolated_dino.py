@@ -14,7 +14,7 @@ from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection
 from utils.track_utils import sample_points_from_masks
 from utils.video_utils import create_video_from_images
 from utils.supervision_utils import CUSTOM_COLOR_MAP
-from supervision.draw.color import ColorPallete
+from supervision.draw.color import ColorPalette
 
 """
 Custom args for make debugging fast
@@ -133,13 +133,13 @@ detections = sv.Detections(
 )
 
 # combine the original image with the detection results, and visualize the bounding boxes with labels
-box_annotator = sv.BoxAnnotator(color=ColorPallete.from_hex(CUSTOM_COLOR_MAP))
+box_annotator = sv.BoxAnnotator(color=ColorPalette.from_hex(CUSTOM_COLOR_MAP))
 
 # build the annotated frame (in this case it's just a slice)
 annotated_frame = box_annotator.annotate(scene=original_img.copy(), detections=detections)
 
 # build the label annotator to visualize the labels
-label_annotator = sv.LabelAnnotator(color=ColorPallete.from_hex(CUSTOM_COLOR_MAP))
+label_annotator = sv.LabelAnnotator(color=ColorPalette.from_hex(CUSTOM_COLOR_MAP))
 annotated_frame = label_annotator.annotate(scene=annotated_frame, detections=detections, labels=labels)
 
 # save the result as image
