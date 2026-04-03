@@ -3,6 +3,7 @@ import cv2
 import torch
 import numpy as np
 import supervision as sv
+import argparse
 
 from pathlib import Path
 from tqdm import tqdm
@@ -14,11 +15,21 @@ from utils.track_utils import sample_points_from_masks
 from utils.video_utils import create_video_from_images
 
 """
+Custom args for make debugging fast
+"""
+parser = argparse.ArgumentParser()
+parser.add_argument("--video-path", default="/content/drive/MyDrive/warehouse_videos/safe_trolley.mp4")
+parser.add_argument("--text-prompt", default="person.")
+parser.add_argument("--frame-start", type=int, default=0)
+args = parser.parse_args()
+
+"""
 Hyperparam for Ground and Tracking
 """
 MODEL_ID = "IDEA-Research/grounding-dino-tiny"
-VIDEO_PATH = "/content/drive/MyDrive/warehouse_videos/safe_trolley.mp4"
-TEXT_PROMPT = "person. trolley. cart."
+VIDEO_PATH = args.video_path
+TEXT_PROMPT = args.text_prompt
+FRAME_START = args.frame_start
 OUTPUT_VIDEO_PATH = "./safe_trolley_tracking_demo.mp4"
 SOURCE_VIDEO_FRAME_DIR = "./custom_video_frames"
 SAVE_TRACKING_RESULTS_DIR = "./tracking_results"
@@ -59,7 +70,7 @@ video_info = sv.VideoInfo.from_video_path(VIDEO_PATH)  # get video info
 print(video_info)
 # frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=1, start=0, end=None)
 # using more stride to extract fewer slices, and starting at slice 25 to get clearer picture of the object
-frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=3, start=25, end=None)  
+frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=3, start=FRAME_START, end=None)  
 
 # saving video to frames
 source_frames = Path(SOURCE_VIDEO_FRAME_DIR)
