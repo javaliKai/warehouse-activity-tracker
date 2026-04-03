@@ -20,7 +20,9 @@ Custom args for make debugging fast
 parser = argparse.ArgumentParser()
 parser.add_argument("--video-path", default="/content/drive/MyDrive/warehouse_videos/safe_trolley.mp4")
 parser.add_argument("--text-prompt", default="person.")
+parser.add_argument("--output-video-path", default="./tracking_demo.mp4")
 parser.add_argument("--frame-start", type=int, default=0)
+
 args = parser.parse_args()
 
 """
@@ -30,7 +32,7 @@ MODEL_ID = "IDEA-Research/grounding-dino-tiny"
 VIDEO_PATH = args.video_path
 TEXT_PROMPT = args.text_prompt
 FRAME_START = args.frame_start
-OUTPUT_VIDEO_PATH = "./safe_trolley_tracking_demo.mp4"
+OUTPUT_VIDEO_PATH = args.output_video_path
 SOURCE_VIDEO_FRAME_DIR = "./custom_video_frames"
 SAVE_TRACKING_RESULTS_DIR = "./tracking_results"
 PROMPT_TYPE_FOR_VIDEO = "box" # choose from ["point", "box", "mask"]
