@@ -23,6 +23,7 @@ parser.add_argument("--video-path", default="/content/drive/MyDrive/warehouse_vi
 parser.add_argument("--text-prompt", default="person.")
 parser.add_argument("--output-video-path", default="./tracking_demo.mp4")
 parser.add_argument("--frame-start", type=int, default=0)
+parser.add_argument("--frame-stride", type=int, default=1)
 
 args = parser.parse_args()
 
@@ -33,6 +34,7 @@ MODEL_ID = "IDEA-Research/grounding-dino-tiny"
 VIDEO_PATH = args.video_path
 TEXT_PROMPT = args.text_prompt
 FRAME_START = args.frame_start
+FRAME_STRIDE = args.frame_stride
 OUTPUT_VIDEO_PATH = args.output_video_path
 SOURCE_VIDEO_FRAME_DIR = "./custom_video_frames"
 SAVE_TRACKING_RESULTS_DIR = "./tracking_results"
@@ -73,7 +75,7 @@ video_info = sv.VideoInfo.from_video_path(VIDEO_PATH)  # get video info
 print(video_info)
 # frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=1, start=0, end=None)
 # using more stride to extract fewer slices, and starting at slice 25 to get clearer picture of the object
-frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=3, start=FRAME_START, end=None)  
+frame_generator = sv.get_video_frames_generator(VIDEO_PATH, stride=FRAME_STRIDE, start=FRAME_START, end=None)  
 
 # saving video to frames
 source_frames = Path(SOURCE_VIDEO_FRAME_DIR)
