@@ -10,10 +10,14 @@ A simple warehouse activity tracking and monitoring prototype built with **Groun
 
 ## Demo
 
-<video src="assets/warehouse-project-demo.mp4" controls width="100%"></video>
+Below are sample outputs from the final warehouse monitoring pipeline.  
+They show how the system can visualize segmented objects and highlight different scene conditions, including both safe activity and possible safety violations.
 
-If the video does not render in your GitHub view, open it directly here:  
-[Watch the demo video](assets/warehouse-project-demo.mp4)
+| Safe activity                                          | Unsafe forklift-related case                                       | Unsafe footwear case                                           |
+| ------------------------------------------------------ | ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| ![Safe warehouse activity](assets/full-seg-1-safe.png) | ![Unsafe forklift activity](assets/full-seg-2-unsafe-forklift.png) | ![Unsafe sandal activity](assets/full-seg-3-unsafe-sandal.png) |
+
+Full demo video: [warehouse-project-demo.mp4](assets/warehouse-project-demo.mp4)
 
 ---
 
